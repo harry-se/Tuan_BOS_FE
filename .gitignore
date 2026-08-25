@@ -36,6 +36,19 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local dev data store (leads/orders/newsletter) — not for production use, see README
+/.data/
+
+# sanity
+.sanity/
+
+# standalone Sanity Studio project (own node_modules/build, see studio/README or root README)
+studio/node_modules/
+studio/dist/
+studio/.sanity/
+studio/.env
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.claude
