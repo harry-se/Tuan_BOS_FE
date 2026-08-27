@@ -16,26 +16,26 @@ export function PillarSystemMap() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-gold">{system.code}</p>
                 <h3 className="mt-1 text-lg font-semibold text-navy">{system.name}</h3>
 
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-charcoal/50">Vấn đề thường gặp</p>
-                <ul className="mt-1 space-y-1 text-sm text-charcoal/75">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">Vấn đề thường gặp</p>
+                <ul className="mt-1 space-y-1 pl-3 text-sm text-charcoal/75">
                   {system.commonProblems.map((p) => (
                     <li key={p}>• {p}</li>
                   ))}
                 </ul>
 
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-charcoal/50">Mục tiêu</p>
-                <p className="mt-1 text-sm text-charcoal/75">{system.goal}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">Mục tiêu</p>
+                <p className="mt-1 pl-3 text-sm text-charcoal/75">{system.goal}</p>
 
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-charcoal/50">Module chính</p>
-                <p className="mt-1 text-sm text-charcoal/75">{system.mainModules.join(" · ")}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">Module chính</p>
+                <p className="mt-1 pl-3 text-sm text-charcoal/75">{system.mainModules.join(" · ")}</p>
 
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-charcoal/50">Công cụ</p>
-                <p className="mt-1 text-sm text-charcoal/75">{system.tools.join(" · ")}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">Công cụ</p>
+                <p className="mt-1 pl-3 text-sm text-charcoal/75">{system.tools.join(" · ")}</p>
 
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-charcoal/50">Kết quả mong đợi</p>
-                <ul className="mt-1 space-y-1 text-sm text-charcoal/75">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">Kết quả mong đợi</p>
+                <ul className="mt-1 space-y-1 pl-3 text-sm text-charcoal/75">
                   {system.expectedResults.map((r) => (
-                    <li key={r}>• {r}</li>
+                    <li key={r}> • {r}</li>
                   ))}
                 </ul>
               </div>

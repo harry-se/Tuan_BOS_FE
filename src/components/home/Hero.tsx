@@ -29,8 +29,8 @@ export function Hero() {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="relative flex h-64 w-64 items-center justify-center rounded-full bg-ink sm:h-80 sm:w-80">
-            <Image src="/logo/logo-r2.png" alt={`${siteConfig.brand} logo`} width={280} height={280} className="h-4/5 w-4/5" priority />
+          <div className="relative flex h-64 w-64 items-center justify-center rounded-full bg-ink sm:h-90 sm:w-80">
+            <Image src="/img/tony.png" alt={`${siteConfig.name} img`} width={500} height={500} className="w-6/5 rounded-2xl" priority />
           </div>
         </div>
       </Container>

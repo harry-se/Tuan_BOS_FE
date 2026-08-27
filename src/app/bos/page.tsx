@@ -1,4 +1,15 @@
 import type { Metadata } from "next";
+import type { IconType } from "react-icons";
+import {
+  FiSearch,
+  FiActivity,
+  FiList,
+  FiPenTool,
+  FiTool,
+  FiBarChart2,
+  FiRefreshCw,
+  FiTrendingUp,
+} from "react-icons/fi";
 
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -11,15 +22,15 @@ export const metadata: Metadata = {
   description: "3 Pillars, 9 Systems và quy trình tư vấn của phương pháp TUAN.BOS™ — BUILD · OPERATE · SCALE.",
 };
 
-const process = [
-  "Assess — Đánh giá hiện trạng hệ thống",
-  "Diagnose — Chẩn đoán điểm nghẽn ưu tiên",
-  "Prioritize — Sắp xếp thứ tự can thiệp",
-  "Design — Thiết kế hệ thống phù hợp",
-  "Implement — Triển khai cùng đội ngũ",
-  "Measure — Đo lường kết quả",
-  "Improve — Cải tiến liên tục",
-  "Scale — Nhân rộng và mở rộng quy mô",
+const process: { label: string; icon: IconType }[] = [
+  { label: "Assess — Đánh giá hiện trạng hệ thống", icon: FiSearch },
+  { label: "Diagnose — Chẩn đoán điểm nghẽn ưu tiên", icon: FiActivity },
+  { label: "Prioritize — Sắp xếp thứ tự can thiệp", icon: FiList },
+  { label: "Design — Thiết kế hệ thống phù hợp", icon: FiPenTool },
+  { label: "Implement — Triển khai cùng đội ngũ", icon: FiTool },
+  { label: "Measure — Đo lường kết quả", icon: FiBarChart2 },
+  { label: "Improve — Cải tiến liên tục", icon: FiRefreshCw },
+  { label: "Scale — Nhân rộng và mở rộng quy mô", icon: FiTrendingUp },
 ];
 
 export default function BosMethodPage() {
@@ -59,9 +70,14 @@ export default function BosMethodPage() {
           <h2 className="mb-8 text-2xl font-semibold text-navy">Quy trình tư vấn</h2>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((step, i) => (
-              <li key={step} className="rounded-2xl border border-navy/10 bg-white p-5">
-                <p className="text-2xl font-bold text-gold">{i + 1}</p>
-                <p className="mt-1 text-sm font-medium text-charcoal/85">{step}</p>
+              <li key={step.label} className="rounded-2xl border border-navy/10 bg-white p-5">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy/10 text-navy">
+                    <step.icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <p className="text-2xl font-bold text-gold">{i + 1}</p>
+                </div>
+                <p className="mt-3 text-sm font-medium text-charcoal/85">{step.label}</p>
               </li>
             ))}
           </ol>

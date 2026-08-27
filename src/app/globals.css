@@ -74,3 +74,28 @@ h1, h2, h3, h4 {
   outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
+
+/* Continuous horizontal marquee (Evidence section case studies/testimonials). */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

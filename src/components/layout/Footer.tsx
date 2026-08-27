@@ -6,6 +6,9 @@ import Link from "next/link";
 import { footerNav, siteConfig } from "@/lib/content/site";
 import { trackEvent } from "@/lib/analytics/events";
 
+import { FaFacebookF, FaYoutube,  } from "react-icons/fa";
+import { SiZalo } from "react-icons/si";
+
 function trackOutboundSocial(channel: string) {
   trackEvent("outbound_social", { channel });
 }
@@ -38,46 +41,41 @@ export function Footer() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noreferrer"
-                className="text-ivory/80 hover:text-gold"
+                className="flex items-center gap-2 text-ivory/80 hover:text-gold transition-colors"
                 onClick={() => trackOutboundSocial("facebook")}
               >
+                <FaFacebookF size={16} />
                 Facebook
               </a>
             </li>
-            <li>
-              <a
-                href={siteConfig.social.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="text-ivory/80 hover:text-gold"
-                onClick={() => trackOutboundSocial("linkedin")}
-              >
-                LinkedIn
-              </a>
-            </li>
+
             <li>
               <a
                 href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noreferrer"
-                className="text-ivory/80 hover:text-gold"
+                className="flex items-center gap-2 text-ivory/80 hover:text-gold transition-colors"
                 onClick={() => trackOutboundSocial("youtube")}
               >
+                <FaYoutube size={18} />
                 YouTube
               </a>
             </li>
+
             <li>
               <a
                 href={siteConfig.social.zalo}
                 target="_blank"
                 rel="noreferrer"
-                className="text-ivory/80 hover:text-gold"
+                className="flex items-center gap-2 text-ivory/80 hover:text-gold transition-colors"
                 onClick={() => trackOutboundSocial("zalo")}
               >
+                <SiZalo size={18} />
                 Zalo
               </a>
             </li>
           </ul>
+
         </div>
       </div>
 

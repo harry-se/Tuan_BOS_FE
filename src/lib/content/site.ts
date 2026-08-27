@@ -12,28 +12,34 @@ export const siteConfig = {
   social: {
     facebook: "https://facebook.com/tuanbos",
     linkedin: "https://linkedin.com/in/tuanbos",
-    youtube: "https://youtube.com/@tuanbos",
+    youtube: "https://youtube.com/@tuanbos",  
     zalo: "https://zalo.me/tuanbos",
   },
+  birth: "1976",
+  passion: "Chia sẻ tri thức, kinh nghiệm và những đúc kết cho doanh nhân và thế hệ sau."
 };
 
 export const primaryNav = [
-  { label: "TUAN.BOS", href: "/bos" },
   { label: "Về Tony", href: "/about" },
+  { label: "TUAN.BOS", href: "/bos" },
   { label: "Cố vấn", href: "/advisory" },
-  { label: "Insights", href: "/insights" },
-  { label: "Sách & Khoá học", href: "/books" },
+  { label: "Sách", href: "/books" },
+  { label: "Khoá học", href: "/courses" },
   { label: "Cộng đồng", href: "/community" },
+  { label: "Tài nguyên", href: "/resources" },
+  { label: "Sự kiện", href: "/events" },
+  { label: "Liên hệ", href: "/contact" },
+  // { label: "Chính sách", href: "/privacy" },
 ];
 
 export const footerNav = {
   explore: [
-    { label: "TUAN.BOS Method", href: "/bos" },
-    { label: "Advisory", href: "/advisory" },
+    { label: "Phương pháp TUAN.BOS", href: "/bos" },
+    { label: "Cố vấn", href: "/advisory" },
     { label: "Insights", href: "/insights" },
-    { label: "Case Studies", href: "/case-studies" },
-    { label: "Resources", href: "/resources" },
-    { label: "Events", href: "/events" },
+    { label: "Kết quả thực tế", href: "/case-studies" },
+    { label: "Tài nguyên", href: "/resources" },
+    { label: "Sự kiện", href: "/events" },
   ],
   commerce: [
     { label: "Sách", href: "/books" },

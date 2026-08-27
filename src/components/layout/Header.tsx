@@ -42,9 +42,9 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={siteConfig.primaryCta.href} size="md">
+          {/* <Button href={siteConfig.primaryCta.href} size="md">
             {siteConfig.primaryCta.label}
-          </Button>
+          </Button> */}
         </div>
 
         <button
@@ -82,9 +82,9 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <Button href={siteConfig.primaryCta.href} className="mt-4 w-full" onClick={() => setOpen(false)}>
+          {/* <Button href={siteConfig.primaryCta.href} className="mt-4 w-full" onClick={() => setOpen(false)}>
             {siteConfig.primaryCta.label}
-          </Button>
+          </Button> */}
         </div>
       ) : null}
     </header>

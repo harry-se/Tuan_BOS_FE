@@ -29,10 +29,10 @@ export default function AboutPage() {
         <Container>
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">Về Tony</p>
           <h1 className="mt-2 max-w-2xl text-3xl font-semibold sm:text-4xl">
-            Tôi tin rằng doanh nghiệp bền vững bắt đầu từ hệ thống, không phải từ sự hy sinh của một người
+            ❛ Tôi tin rằng doanh nghiệp bền vững bắt đầu từ hệ thống, không phải từ sự hy sinh của một người ❜
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-charcoal/80">
-            {siteConfig.name} — {siteConfig.description}
+            {siteConfig.name}({siteConfig.birth}) - cố vấn doanh nghiệp thực chiến, tập trung giúp chủ doanh nghiệp xây dựng Hệ điều hành doanh nghiệp theo phương pháp TUAN.BOS™ để chiến lược được chuyển thành vận hành, kết quả được đo lường và tăng trưởng trở nên bền vững hơn.
           </p>
         </Container>
       </section>
@@ -55,10 +55,10 @@ export default function AboutPage() {
         <Container className="max-w-3xl">
           <h2 className="text-2xl font-semibold text-navy">Triết lý cố vấn</h2>
           <p className="mt-4 text-charcoal/80">
-            Vai trò của một cố vấn không phải là làm thay, mà là giúp chủ doanh nghiệp và đội ngũ nhìn rõ hệ thống
+            ❝Vai trò của một cố vấn không phải là làm thay, mà là giúp chủ doanh nghiệp và đội ngũ nhìn rõ hệ thống
             đang thiếu, sau đó cùng xây dựng để hệ thống ấy tự vận hành mà không cần phụ thuộc vào cố vấn hay người
             chủ. Đây là ranh giới quan trọng giữa vai trò advisor và management — TUAN.BOS đồng hành, không thay thế
-            đội ngũ vận hành của bạn.
+            đội ngũ vận hành của bạn.❞
           </p>
         </Container>
       </section>
