@@ -6,7 +6,7 @@ import Link from "next/link";
 import { footerNav, siteConfig } from "@/lib/content/site";
 import { trackEvent } from "@/lib/analytics/events";
 
-import { FaFacebookF, FaYoutube,  } from "react-icons/fa";
+import { FaFacebookF, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
 
 function trackOutboundSocial(channel: string) {
@@ -59,6 +59,19 @@ export function Footer() {
               >
                 <FaYoutube size={18} />
                 YouTube
+              </a>
+            </li>
+
+            <li>
+              <a
+                href={siteConfig.social.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-ivory/80 hover:text-gold transition-colors"
+                onClick={() => trackOutboundSocial("linkedin")}
+              >
+                <FaLinkedin size={18} />
+                LinkedIn
               </a>
             </li>
 
