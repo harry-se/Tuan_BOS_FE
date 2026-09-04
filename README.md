@@ -71,12 +71,25 @@ merits (independent release cadence, no shared bundler constraints).
 
 ## Deploy to cPanel (Node.js Selector / Passenger)
 
-`next.config.ts` sets `output: "standalone"`, and `npm run build` automatically
+`next.config.mjs` sets `output: "standalone"`, and `npm run build` automatically
 runs a `postbuild` step (`scripts/copy-standalone-assets.mjs`) that copies
 `public/` and `.next/static/` into `.next/standalone/`. The result,
 `.next/standalone/`, is a self-contained app with its own minimal `server.js`
-and a pruned `node_modules` — no need to install devDependencies
-(TypeScript/ESLint/Tailwind) on the shared host.
+and a pruned `node_modules`.
+
+The config file is plain JavaScript (not `.ts`) on purpose — loading a
+`next.config.ts` requires TypeScript to be resolvable *before* the build even
+starts, and that bootstrap step doesn't play well with cPanel Node.js
+Selector's nodevenv setup.
+
+**Note on `dependencies` vs `devDependencies`:** many cPanel/Node.js Selector
+hosts run `npm install --omit=dev` under "Run NPM Install", skipping
+`devDependencies` entirely. `next build` genuinely needs `typescript` (for
+type-checking and to resolve the `@/*` path aliases from `tsconfig.json`) and
+`tailwindcss`/`@tailwindcss/postcss` (to process the CSS) — so those are kept
+in `dependencies` here, not `devDependencies`, even though they're normally
+dev-only. Only `eslint`/`eslint-config-next` (used solely by `npm run lint`,
+not by `next build`) stay in `devDependencies`.
 
 **Important:** `next`, `sharp`, and `@swc/*` ship platform-specific native
 binaries. Building on your own machine and uploading `node_modules`/`.next`
