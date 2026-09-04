@@ -69,6 +69,38 @@ it correctly, and decoupling the CMS admin app from the marketing/commerce
 frontend's deploy pipeline is also a common, defensible choice on its own
 merits (independent release cadence, no shared bundler constraints).
 
+## Deploy to cPanel (Node.js Selector / Passenger)
+
+`next.config.ts` sets `output: "standalone"`, and `npm run build` automatically
+runs a `postbuild` step (`scripts/copy-standalone-assets.mjs`) that copies
+`public/` and `.next/static/` into `.next/standalone/`. The result,
+`.next/standalone/`, is a self-contained app with its own minimal `server.js`
+and a pruned `node_modules` — no need to install devDependencies
+(TypeScript/ESLint/Tailwind) on the shared host.
+
+**Important:** `next`, `sharp`, and `@swc/*` ship platform-specific native
+binaries. Building on your own machine and uploading `node_modules`/`.next`
+as-is will crash on the server if the OS/arch differs (Windows build → Linux
+host = guaranteed crash, surfaced by Passenger as a 503). Always run the
+install/build steps **on the server itself**:
+
+1. Upload the project source to the app root (everything except
+   `node_modules`, `.next`, `.git` — those get regenerated on the server).
+2. Put real values in a `.env.local` (or `.env.production`) file **in the app
+   root, before building** — the `NEXT_PUBLIC_*` vars are inlined into the
+   client bundle at build time, so setting them only as runtime environment
+   variables afterward is too late.
+3. In cPanel's Node.js Selector, click **"Run NPM Install"** (installs with
+   the server's own Node/npm, fetching correct Linux binaries).
+4. Use **"Run JS script"** to run `npm run build` (runs `next build`, then the
+   `postbuild` copy step, on the server).
+5. Set **Application startup file** to `.next/standalone/server.js` (path is
+   relative to Application root — no need to change Application root itself).
+6. Set **Application mode** to Production, then Restart App.
+
+After any code change: repeat steps 3–4 (or at minimum step 4) and restart —
+there's no separate "upload build output" step, the build happens in place.
+
 ## Content model (§7)
 
 Schema types live in `studio/schemaTypes/`: `article` (doubles as the "video"
