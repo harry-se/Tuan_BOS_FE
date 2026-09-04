@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Self-contained server output for cPanel/shared hosting (Node.js Selector /
   // Passenger) — produces .next/standalone/server.js with only the runtime
   // deps it actually needs, instead of requiring the full node_modules
