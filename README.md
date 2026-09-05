@@ -59,6 +59,48 @@ project ID/dataset:
    (publishes to `https://<project>.sanity.studio`, separate from the
    marketing site's deployment).
 
+## Admin content editing on production (AC-03)
+
+Satisfying AC-03 ("Admin không cần code để tạo/sửa Article, Video, Case, Book,
+Course, Resource") needs these one-time steps, then it's self-serve forever
+after:
+
+1. **Deploy the Studio so the admin has somewhere to log in.** From your own
+   machine (not the server): `cd studio && npm run deploy`. It'll ask you to
+   pick a hostname (e.g. `tuanbos` → `https://tuanbos.sanity.studio`) and log
+   in via browser with a Sanity account (create one if the admin doesn't have
+   one — it's separate from cPanel/hosting accounts). Give that URL + account
+   to whoever will be editing content.
+2. **Allow that Studio URL to talk to the API.** At sanity.io/manage → your
+   project → API → CORS Origins → Add origin → paste the `https://xxx.sanity.studio`
+   URL from step 1 (allow credentials: yes). Without this, Studio loads but
+   every read/write call fails silently/with a CORS error in the browser
+   console.
+3. **Point production at the real dataset.** Make sure the `.env.local` (or
+   `.env.production`) used for the **last production build on the server**
+   has `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` set to
+   the same project/dataset the Studio in step 1 writes to. These are inlined
+   at build time (see the cPanel section above) — if you change either value,
+   you must rebuild once on the server for it to take effect.
+4. **Seed the taxonomy once**, so Article/Book/Course/etc. have Pillars and
+   Systems to reference (otherwise those reference fields show no options in
+   Studio). Run locally: get a write-scoped token (sanity.io/manage → project
+   → API → Tokens → Add API token → "Editor"), then:
+   ```bash
+   SANITY_API_TOKEN=<token> node --env-file=.env.local scripts/seed-taxonomy.mjs
+   ```
+   This is idempotent (safe to re-run) and only touches Pillar/System/Profile
+   documents — never run it against a token/dataset you don't intend to seed.
+5. **Editing from here on needs no rebuild.** Content queries use Next's ISR
+   (`revalidate: 60` in `sanityFetch`), so an edit published in Studio appears
+   on the live site within ~60 seconds automatically — no "Run JS script", no
+   restart. Brand-new documents (new article/book/course slugs that didn't
+   exist at build time) also work immediately, since `generateStaticParams`
+   only pre-renders known slugs at build time but Next still renders
+   (and then caches) any new slug on its first request. A rebuild is only
+   needed for actual **code** changes, or if you change the Project
+   ID/dataset env vars.
+
 **Why a separate Studio project instead of embedding it at `/studio` in the
 Next.js app:** it was tried first, but the current `sanity`/`@sanity/ui`
 release requires a very recent React API (`Activity`) whose CJS/ESM export
